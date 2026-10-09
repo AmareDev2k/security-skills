@@ -12,7 +12,8 @@
 
 <p align="center">
   Threat modeling, code review, access control, secrets hygiene, dependency
-  auditing, web hardening, and incident response.
+  auditing, web hardening, API security, container security, CI/CD pipeline
+  hardening, and incident response.
 </p>
 
 <p align="center">
@@ -88,7 +89,10 @@ Design a security-sensitive feature
   → Build the feature
   → /security-review
   → /auth-access-review when authorization changes
+  → /api-security when building or changing APIs
   → /dependency-audit and /web-hardening before release
+  → /container-security when deploying with Docker or Kubernetes
+  → /cicd-security when setting up or changing pipelines
 ```
 
 For a suspected compromise:
@@ -127,6 +131,14 @@ Incident detected
 | `web-hardening` | Review headers, CORS, CSRF, cookies, CSP, uploads, rate limiting, and production configuration. |
 | `incident-response` | Contain, preserve evidence, scope, eradicate, recover, notify, and learn from an incident. |
 
+### Infrastructure and pipeline
+
+| Skill | Purpose |
+| --- | --- |
+| `api-security` | Review REST, GraphQL, and gRPC APIs for authentication, input validation, rate limiting, and data exposure. |
+| `container-security` | Review Docker images, runtime configuration, and Kubernetes security (RBAC, network policies, pod security). |
+| `cicd-security` | Harden CI/CD pipelines: secrets management, workflow permissions, supply-chain integrity, and build isolation. |
+
 ## What the skills check
 
 Depending on the selected workflow, the skills can examine:
@@ -140,6 +152,11 @@ Depending on the selected workflow, the skills can examine:
 - Dependency vulnerabilities, lockfiles, typosquatting, and install scripts
 - SSRF, path traversal, unrestricted uploads, and unsafe deserialization
 - CORS, CSRF, cookies, CSP, security headers, rate limiting, and debug settings
+- API authentication, input validation, output filtering, and rate limiting
+- GraphQL introspection, query depth limits, and field-level authorization
+- Docker image build security, runtime privileges, and resource limits
+- Kubernetes RBAC, network policies, pod security, and secrets management
+- CI/CD secrets exposure, workflow permissions, artifact integrity, and supply-chain risk
 - Logging, evidence preservation, detection, recovery, and incident ownership
 
 The skills are instructed to inspect real files, confirm reachability, separate
@@ -162,7 +179,10 @@ facts from assumptions, and report unverified items clearly.
 │   └── validate.mjs
 └── skills/
     └── security/
+        ├── api-security/
         ├── auth-access-review/
+        ├── cicd-security/
+        ├── container-security/
         ├── dependency-audit/
         ├── incident-response/
         ├── security-grill/
@@ -174,8 +194,8 @@ facts from assumptions, and report unverified items clearly.
 ```
 
 Every canonical skill contains a `SKILL.md` with frontmatter and instructions.
-The web-hardening skill also contains framework-specific references for Django
-and Next.js/Supabase projects.
+The web-hardening skill also contains framework-specific references for Django,
+Next.js/Supabase, and Express/Fastify projects.
 
 ## Validation
 

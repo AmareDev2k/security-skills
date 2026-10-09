@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/AmareDev2k">
-    <img src="https://wsrv.nl/?url=avatars.githubusercontent.com/u/218460077?v=4&w=100&h=100&mask=circle" alt="Aravinda" width="80">
+    <img src="https://wsrv.nl/?url=avatars.githubusercontent.com/u/218460077?v=4&w=150&h=150&mask=circle" alt="Aravinda" width="80">
   </a>
 </p>
 

@@ -5,7 +5,7 @@ Agent skills for building secure software: threat modelling, security review, se
 ## Installation
 
 ```bash
-npx skills@latest add <your-github-username>/security-skills
+npx skills@latest add AmareDev2k/security-skills
 ```
 
 Pick the skills you want and the agents to install them on. Make sure `setup-security-skills` is one of them, then run it once per repo:

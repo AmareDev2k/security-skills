@@ -1,11 +1,25 @@
 ---
 name: incident-response
-description: Guide the first hour of a security incident such as a leaked key, compromised account, suspicious access, or defaced site. Contain, preserve evidence, rotate, investigate, and write the follow-up. Use when the user says they were hacked, a secret was exposed, an account was taken over, or something looks compromised.
+description: Guide the first hour of an active or suspected security incident such as a compromised account, breached host, suspicious access, defaced site, malware, or exposed credential with possible misuse. Contain, preserve evidence, scope impact, eradicate persistence, recover, notify the right people, and write the follow-up. Use when the user says they were hacked, breached, taken over, attacked, or sees suspicious activity. Use this before `/secrets-hygiene` when a leaked secret may already have been used.
 ---
 
 # Incident Response
 
 Be calm and ordered. In an incident, people skip steps and destroy evidence. Work through these phases and tell the user which one they are in.
+
+## Examples
+
+Use this skill for:
+
+- "Our production account may have been taken over."
+- "Someone used our exposed cloud key."
+- "A server was modified and we need to investigate."
+
+Do not use this skill for:
+
+- Preventive review with no active incident; use `/security-review` or `/threat-model`.
+- A secret discovered before any suspected use; use `/secrets-hygiene`.
+- Routine dependency updates; use `/dependency-audit`.
 
 ## 1. Contain (minutes)
 

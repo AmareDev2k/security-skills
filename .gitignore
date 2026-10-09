@@ -4,3 +4,10 @@ node_modules/
 .env
 .env.*
 PR.md
+
+# Agents
+.claude
+.grok
+.agents/skills/
+
+skills-lock.json

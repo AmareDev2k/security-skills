@@ -1,9 +1,23 @@
 ---
 name: web-hardening
-description: Harden a web application's configuration, covering security headers, CORS, CSRF, cookies, rate limiting, CSP, file uploads, error handling, and production settings. Use when the user is preparing to deploy, asks about headers, CORS errors, cookies, CSRF, "is my site secure", or works in Django/DRF, Next.js, React, or Supabase.
+description: Harden a web application's configuration, covering HTTPS, security headers, CORS, CSRF, cookies, CSP, rate limiting, file uploads, error handling, and production settings. Use when the user is preparing to deploy, asks about headers, CORS errors, cookies, CSRF, CSP, uploads, rate limits, "is my site secure", or works in Django/DRF, Next.js, React, or Supabase. Do not use for object-level authorization or tenant-isolation reviews; use `/auth-access-review`.
 ---
 
 # Web Hardening
+
+## Examples
+
+Use this skill for:
+
+- "Are my CORS and cookie settings safe?"
+- "Add security headers before production deployment."
+- "Review this Django file-upload configuration."
+
+Do not use this skill for:
+
+- Whether one user can access another user's records; use `/auth-access-review`.
+- A leaked API key or password; use `/secrets-hygiene`.
+- A broad code-diff audit; use `/security-review`.
 
 ## Process
 

@@ -1,9 +1,23 @@
 ---
 name: dependency-audit
-description: Audit project dependencies for known vulnerabilities, abandoned packages, and supply-chain risk, then propose safe upgrades. Use when the user asks about vulnerable packages, npm audit, pip-audit, Dependabot alerts, outdated libraries, or before a release or deploy.
+description: Audit project dependencies for known vulnerabilities, abandoned packages, malicious or typosquatted packages, and supply-chain risk, then propose safe upgrades. Use when the user asks about vulnerable packages, npm audit, pip-audit, Dependabot alerts, outdated libraries, lockfiles, release readiness, or deployment risk. Do not use for application-code vulnerabilities unrelated to dependencies; use `/security-review`.
 ---
 
 # Dependency Audit
+
+## Examples
+
+Use this skill for:
+
+- "Run an audit of our npm dependencies."
+- "Which vulnerable packages need upgrading before release?"
+- "Is this new package safe to add?"
+
+Do not use this skill for:
+
+- A code-level vulnerability in an application endpoint; use `/security-review`.
+- A leaked dependency token or credential; use `/secrets-hygiene`.
+- Major upgrades before the user approves breaking changes.
 
 ## Process
 

@@ -1,9 +1,23 @@
 ---
 name: secrets-hygiene
-description: Find, prevent, and clean up leaked secrets (API keys, tokens, passwords, private keys, .env files) in a repo and its git history. Use when the user mentions secrets, API keys, .env, credentials in git, a leaked key, or is about to commit config files, push a repo public, or deploy.
+description: Find, prevent, and clean up leaked secrets such as API keys, tokens, passwords, private keys, service-account files, and `.env` files in the working tree or Git history. Use when the user mentions a secret, credential, API key, token, `.env`, leaked key, exposed password, public repository, or committing configuration. Use before pushing or deploying when credential exposure is possible. Do not use as the primary flow for an active compromise; use `/incident-response` first and then hand off here for secret rotation and cleanup.
 ---
 
 # Secrets Hygiene
+
+## Examples
+
+Use this skill for:
+
+- "I accidentally committed an API key."
+- "Check whether this repository contains secrets."
+- "What should I do with a leaked GitHub token?"
+
+Do not use this skill for:
+
+- General security reviews with no credential concern; use `/security-review`.
+- An active compromise involving systems or accounts; use `/incident-response` first.
+- Dependency vulnerabilities; use `/dependency-audit`.
 
 ## 1. Scan the working tree
 

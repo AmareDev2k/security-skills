@@ -1,12 +1,26 @@
 ---
 name: setup-security-skills
-description: One-time setup for the security skills in this repo. Records where security reports live, the severity scale, which scanners exist, and the project's stack in SECURITY-CONTEXT.md. Run once per repo before the other security skills, or whenever the user asks to configure, set up, or re-configure security skills.
+description: Configure the security skills for a repository by recording its stack, authentication, hosting, report location, severity scale, incident owner, and available scanners in SECURITY-CONTEXT.md. Use once before the other security skills, or when the user asks to configure, set up, or reconfigure security skills. Do not use for a one-off security review without repository configuration.
 disable-model-invocation: true
 ---
 
 # Setup Security Skills
 
 Create (or update) `SECURITY-CONTEXT.md` at the repo root. Every other skill in this set reads it if it exists.
+
+## Examples
+
+Use this skill for:
+
+- "Set up the security skills for this repository."
+- "Where should our security reports live?"
+- "Reconfigure the project's security context."
+
+Do not use this skill for:
+
+- Reviewing a pull request; use `/security-review`.
+- Responding to an active incident; use `/incident-response`.
+- Updating installed skill files; use `npx skills update`.
 
 ## Process
 

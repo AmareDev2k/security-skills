@@ -1,11 +1,25 @@
 ---
 name: auth-access-review
-description: Review authentication, authorisation, and multi-tenant isolation, hunting for broken access control such as IDOR, missing permission checks, privilege escalation, and cross-tenant data leaks. Use when the user mentions roles, permissions, login, JWT, sessions, multi-tenant, admin panels, or "can user A see user B's data", and whenever a new endpoint or view is added.
+description: Review authentication, authorization, and multi-tenant isolation for broken access control such as IDOR, missing permission checks, privilege escalation, mass assignment, and cross-tenant data leaks. Use when the user mentions roles, permissions, login, JWT, sessions, tenant isolation, admin panels, object ownership, or asks whether user A can see or change user B's data. Use when a route, endpoint, view, background job, export, or policy changes authorization. Do not use for a general security review when no access-control behavior is in scope.
 ---
 
 # Auth and Access Review
 
 Broken access control is the most common serious web vulnerability. Check it directly, endpoint by endpoint.
+
+## Examples
+
+Use this skill for:
+
+- "Can a normal user read another user's invoice?"
+- "Review this admin endpoint for privilege escalation."
+- "Does this API enforce tenant isolation in background jobs?"
+
+Do not use this skill for:
+
+- Password or token leaks; use `/secrets-hygiene`.
+- Headers, CORS, or cookie hardening without an authorization issue; use `/web-hardening`.
+- An active account takeover; use `/incident-response`.
 
 ## Process
 

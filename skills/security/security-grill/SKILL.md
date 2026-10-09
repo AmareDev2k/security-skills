@@ -1,12 +1,26 @@
 ---
 name: security-grill
-description: Get relentlessly interviewed about the security of a plan, feature, or design until every attack path and trust boundary is resolved. Use when the user wants to stress-test a design, says "grill me on security", or is about to build something that handles auth, payments, uploads, or personal data.
+description: Interview the user about the security of a plan, feature, or design until the important attack paths, assets, identities, trust boundaries, and recovery decisions are resolved. Use when the user wants to stress-test a design, says "grill me on security", or is about to build something handling authentication, payments, uploads, secrets, or personal data. Do not use for a finished code-diff audit; use `/security-review`.
 disable-model-invocation: true
 ---
 
 # Security Grill
 
 Interview the user about their plan until you both understand what could go wrong. Do not lecture. Ask.
+
+## Examples
+
+Use this skill for:
+
+- "Grill me on the security of this payment flow."
+- "What questions should we answer before building this upload feature?"
+- "Stress-test our authentication design."
+
+Do not use this skill for:
+
+- A completed implementation that needs vulnerability findings; use `/security-review`.
+- Writing the final STRIDE document after decisions are settled; use `/threat-model`.
+- An active incident; use `/incident-response`.
 
 ## Rules
 

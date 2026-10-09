@@ -16,6 +16,15 @@ Pick the skills you want and the agents to install them on. Make sure `setup-sec
 
 It detects your stack and scanners, asks a few questions, and writes `SECURITY-CONTEXT.md`, which the other skills read.
 
+### Claude Code plugin
+
+This repository also includes a Claude Code plugin manifest in `.claude-plugin/plugin.json`.
+To load it locally, run Claude Code from the repository root:
+
+```bash
+claude --plugin-dir .
+```
+
 Update later with:
 
 ```bash

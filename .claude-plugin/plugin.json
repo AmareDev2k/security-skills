@@ -1,0 +1,17 @@
+{
+  "name": "security-skills",
+  "description": "Composable security skills for threat modeling, security reviews, secrets hygiene, dependency audits, access control, web hardening, and incident response.",
+  "version": "1.0.0",
+  "author": {
+    "name": "AmareDev2k"
+  },
+  "homepage": "https://github.com/AmareDev2k/security-skills",
+  "repository": "https://github.com/AmareDev2k/security-skills",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "threat-modeling",
+    "security-review",
+    "incident-response"
+  ]
+}

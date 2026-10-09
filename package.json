@@ -1,0 +1,14 @@
+{
+  "name": "@amaredev2k/security-skills",
+  "version": "1.0.0",
+  "description": "Composable security skills for coding agents",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmareDev2k/security-skills.git"
+  },
+  "private": true,
+  "scripts": {
+    "validate:json": "node -e \"JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json', 'utf8')); JSON.parse(require('fs').readFileSync('package.json', 'utf8'))\""
+  }
+}

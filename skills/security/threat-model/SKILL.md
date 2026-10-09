@@ -1,12 +1,26 @@
 ---
 name: threat-model
-description: Produce a lightweight, written threat model for a system or feature using assets, trust boundaries, and STRIDE. Use when the user asks for a threat model, security design review, or attack surface analysis, or after a security-grill session.
+description: Produce a lightweight, written threat model for a system or feature using assets, actors, trust boundaries, attack paths, and STRIDE. Use during design, when the user asks for a threat model, security design review, trust-boundary analysis, or attack-surface analysis, or after a `/security-grill` session. Do not use for a code-diff vulnerability audit; use `/security-review`.
 disable-model-invocation: true
 ---
 
 # Threat Model
 
 Write a threat model the team will actually read: short, specific, and tied to the real code.
+
+## Examples
+
+Use this skill for:
+
+- "Threat-model this file upload feature."
+- "What are the trust boundaries in this payment flow?"
+- "Turn our security-grill decisions into a STRIDE model."
+
+Do not use this skill for:
+
+- Reviewing an existing diff for exploitable bugs; use `/security-review`.
+- An active breach; use `/incident-response`.
+- A design interview where unresolved questions are the main goal; use `/security-grill`.
 
 ## Process
 

@@ -77,34 +77,6 @@ claude --plugin-dir .
 The plugin manifest contains the project identity and metadata. The detailed
 skill instructions remain in `skills/security/`.
 
-## Start with `/ask-matt`
-
-When you are unsure which workflow fits, use `/ask-matt`. It routes the
-request to the narrowest matching security skill.
-
-Examples:
-
-```text
-"Our production account may have been taken over."
-→ /incident-response
-
-"I accidentally committed an API key."
-→ /secrets-hygiene
-
-"Can user A read user B's invoice?"
-→ /auth-access-review
-
-"Review this pull request for security issues."
-→ /security-review
-
-"Are our CORS and cookie settings safe?"
-→ /web-hardening
-```
-
-Active compromises take priority over preventive reviews. Suspected secret
-exposure takes priority over a general code review. If the request is
-ambiguous, the router asks one focused question before selecting a workflow.
-
 ## Security workflow
 
 Use the workflow that matches the stage of the work:
@@ -131,12 +103,11 @@ Incident detected
 
 ## Available skills
 
-### Setup and routing
+### Setup
 
 | Skill | Purpose |
 | --- | --- |
 | `setup-security-skills` | Configure project context, report locations, severity, ownership, and scanners. |
-| `ask-matt` | Route a security request to the most appropriate workflow. |
 
 ### Design and review
 
@@ -179,8 +150,7 @@ facts from assumptions, and report unverified items clearly.
 ```text
 .
 ├── .agents/
-│   └── skills/
-│       └── ask-matt/
+│   └── README.md
 ├── .changeset/
 ├── .claude-plugin/
 │   └── plugin.json

@@ -12,10 +12,13 @@ async function readJson(relativePath) {
 async function validateSkill(relativePath) {
   const path = new URL(relativePath, root);
   const content = await readFile(path, "utf8");
-  if (!content.startsWith("---\n") || !content.includes("\nname:")) {
+  if (!content.startsWith("---\n") && !content.startsWith("---\r\n")) {
     throw new Error(`${relativePath} is missing SKILL.md frontmatter`);
   }
-  if (!content.includes("\ndescription:")) {
+  if (!content.includes("\nname:") && !content.includes("\r\nname:")) {
+    throw new Error(`${relativePath} is missing SKILL.md frontmatter`);
+  }
+  if (!content.includes("\ndescription:") && !content.includes("\r\ndescription:")) {
     throw new Error(`${relativePath} is missing a skill description`);
   }
 }

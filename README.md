@@ -1,75 +1,262 @@
-# Security Skills
+<p align="center">
+  <a href="https://github.com/AmareDev2k">
+    <img src="https://wsrv.nl/?url=avatars.githubusercontent.com/u/218460077?v=4&w=100&h=100&mask=circle" alt="Aravinda" width="80">
+  </a>
+</p>
 
-Agent skills for building secure software: threat modelling, security review, secrets, dependencies, access control, and incident response. Small, composable, and editable. They work with any coding agent that supports `SKILL.md` skills (Claude Code, Codex, Cursor, and others).
+<h1 align="center">Security Skills</h1>
 
-## Installation
+<p align="center">
+  Practical, composable security workflows for coding agents.
+</p>
+
+<p align="center">
+  Threat modeling, code review, access control, secrets hygiene, dependency
+  auditing, web hardening, and incident response.
+</p>
+
+<p align="center">
+  <a href="https://github.com/AmareDev2k/security-skills">GitHub</a>
+  ·
+  <a href="https://github.com/AmareDev2k/security-skills/issues">Issues</a>
+  ·
+  <a href="https://github.com/AmareDev2k/security-skills/blob/master/LICENSE">MIT License</a>
+</p>
+
+---
+
+## Why this exists
+
+Security guidance is most useful when it is available at the moment a
+developer needs it. This repository packages focused security workflows as
+agent skills that can be read, adapted, and run during everyday engineering
+work.
+
+The skills are intentionally small and composable. They do not replace a
+professional security assessment, but they help an agent ask better questions,
+inspect the actual code, identify common weaknesses, and produce an actionable
+follow-up.
+
+## Quick start
+
+Install the skills with the Skills CLI:
 
 ```bash
 npx skills@latest add AmareDev2k/security-skills
 ```
 
-Pick the skills you want and the agents to install them on. Make sure `setup-security-skills` is one of them, then run it once per repo:
+Select the skills and coding agents you want to use. Include
+`setup-security-skills` for a repository that has not been configured yet.
 
-```
+Then run:
+
+```text
 /setup-security-skills
 ```
 
-It detects your stack and scanners, asks a few questions, and writes `SECURITY-CONTEXT.md`, which the other skills read.
+The setup workflow detects the project stack and available scanners, asks for
+the missing project context, and writes `SECURITY-CONTEXT.md`.
 
-### Claude Code plugin
-
-This repository also includes a Claude Code plugin manifest in `.claude-plugin/plugin.json`.
-To load it locally, run Claude Code from the repository root:
-
-```bash
-claude --plugin-dir .
-```
-
-Update later with:
+Update installed skills later with:
 
 ```bash
 npx skills update
 ```
 
-## Reference
+## Claude Code plugin
 
-**User-invoked** skills run only when you type them. They orchestrate.
+This repository includes a Claude Code plugin manifest at
+`.claude-plugin/plugin.json`.
 
-- **setup-security-skills**: One-time repo configuration (stack, severity scale, report location).
-- **security-grill**: Get interviewed about a design until every attack path is resolved.
-- **threat-model**: Write a short STRIDE threat model tied to the real code.
+To load the repository directly during local development:
 
-**Model-invoked** skills can be used by you or picked up automatically when the task fits.
-
-- **security-review**: Review a diff or files for vulnerabilities, with confirmed findings and fixes.
-- **auth-access-review**: Hunt for broken access control, IDOR, and cross-tenant leaks.
-- **secrets-hygiene**: Find, rotate, and prevent leaked keys, in the tree and in git history.
-- **dependency-audit**: Triage vulnerable and risky dependencies and plan safe upgrades.
-- **web-hardening**: Headers, CORS, CSRF, cookies, uploads, with Django/DRF and Next.js/Supabase references.
-- **incident-response**: Contain, preserve, scope, recover, and learn from an incident.
-
-## Typical flow
-
-1. `/security-grill` while designing a feature
-2. `/threat-model` to write it down
-3. Build it
-4. `security-review` and `auth-access-review` before merging
-5. `dependency-audit` and `web-hardening` before deploying
-
-## Layout
-
-```
-skills/
-└── security/
-    ├── <skill-name>/
-    │   ├── SKILL.md          # required: frontmatter (name, description) + instructions
-    │   └── references/       # optional: loaded only when needed
+```bash
+claude --plugin-dir .
 ```
 
-## Disclaimer
+The plugin manifest contains the project identity and metadata. The detailed
+skill instructions remain in `skills/security/`.
 
-These skills help an agent find and fix common weaknesses. They are not a substitute for a professional security audit, and findings should be verified before acting on them.
+## Start with `/ask-matt`
+
+When you are unsure which workflow fits, use `/ask-matt`. It routes the
+request to the narrowest matching security skill.
+
+Examples:
+
+```text
+"Our production account may have been taken over."
+→ /incident-response
+
+"I accidentally committed an API key."
+→ /secrets-hygiene
+
+"Can user A read user B's invoice?"
+→ /auth-access-review
+
+"Review this pull request for security issues."
+→ /security-review
+
+"Are our CORS and cookie settings safe?"
+→ /web-hardening
+```
+
+Active compromises take priority over preventive reviews. Suspected secret
+exposure takes priority over a general code review. If the request is
+ambiguous, the router asks one focused question before selecting a workflow.
+
+## Security workflow
+
+Use the workflow that matches the stage of the work:
+
+```text
+Design a security-sensitive feature
+  → /security-grill
+  → /threat-model
+  → Build the feature
+  → /security-review
+  → /auth-access-review when authorization changes
+  → /dependency-audit and /web-hardening before release
+```
+
+For a suspected compromise:
+
+```text
+Incident detected
+  → /incident-response
+  → /secrets-hygiene for exposed credentials
+  → /security-review for the root cause
+  → Document the follow-up and preventive actions
+```
+
+## Available skills
+
+### Setup and routing
+
+| Skill | Purpose |
+| --- | --- |
+| `setup-security-skills` | Configure project context, report locations, severity, ownership, and scanners. |
+| `ask-matt` | Route a security request to the most appropriate workflow. |
+
+### Design and review
+
+| Skill | Purpose |
+| --- | --- |
+| `security-grill` | Interview a team about assets, entry points, trust boundaries, identity, failure, abuse, and recovery. |
+| `threat-model` | Write a focused threat model using assets, actors, trust boundaries, and STRIDE. |
+| `security-review` | Review diffs, branches, pull requests, or files for exploitable vulnerabilities. |
+| `auth-access-review` | Check authentication, authorization, object ownership, roles, and tenant isolation. |
+
+### Prevention and response
+
+| Skill | Purpose |
+| --- | --- |
+| `secrets-hygiene` | Find, rotate, prevent, and clean up exposed credentials in the tree and Git history. |
+| `dependency-audit` | Audit dependencies for known vulnerabilities and supply-chain risk. |
+| `web-hardening` | Review headers, CORS, CSRF, cookies, CSP, uploads, rate limiting, and production configuration. |
+| `incident-response` | Contain, preserve evidence, scope, eradicate, recover, notify, and learn from an incident. |
+
+## What the skills check
+
+Depending on the selected workflow, the skills can examine:
+
+- Injection into SQL, commands, templates, headers, LDAP, and redirects
+- Cross-site scripting and unsafe HTML rendering
+- Authentication, session handling, password resets, and token lifetime
+- Broken object-level authorization and privilege escalation
+- Cross-tenant data access through APIs, jobs, exports, caches, and storage
+- Secrets in source code, configuration, logs, client bundles, and Git history
+- Dependency vulnerabilities, lockfiles, typosquatting, and install scripts
+- SSRF, path traversal, unrestricted uploads, and unsafe deserialization
+- CORS, CSRF, cookies, CSP, security headers, rate limiting, and debug settings
+- Logging, evidence preservation, detection, recovery, and incident ownership
+
+The skills are instructed to inspect real files, confirm reachability, separate
+facts from assumptions, and report unverified items clearly.
+
+## Repository layout
+
+```text
+.
+├── .agents/
+│   └── skills/
+│       └── ask-matt/
+├── .changeset/
+├── .claude-plugin/
+│   └── plugin.json
+├── .github/
+│   └── workflows/
+│       └── validate.yml
+├── docs/
+├── scripts/
+│   └── validate.mjs
+└── skills/
+    └── security/
+        ├── auth-access-review/
+        ├── dependency-audit/
+        ├── incident-response/
+        ├── security-grill/
+        ├── security-review/
+        ├── secrets-hygiene/
+        ├── setup-security-skills/
+        ├── threat-model/
+        └── web-hardening/
+```
+
+Every canonical skill contains a `SKILL.md` with frontmatter and instructions.
+The web-hardening skill also contains framework-specific references for Django
+and Next.js/Supabase projects.
+
+## Validation
+
+Run the repository validation script:
+
+```bash
+node scripts/validate.mjs
+```
+
+The check validates the JSON metadata and confirms that every canonical
+security skill contains the required frontmatter fields.
+
+GitHub Actions runs the same validation on pushes and pull requests.
+
+## Safety and scope
+
+These skills are defensive guidance. Use them only on systems and code you are
+authorized to inspect or change.
+
+They are not:
+
+- A guarantee that software is secure
+- Legal, regulatory, or compliance advice
+- Permission to test systems without authorization
+- A replacement for a qualified security assessment
+- A substitute for incident command, legal counsel, or law-enforcement advice
+
+During an incident, rotate or revoke credentials at the provider and preserve
+evidence before destructive changes. Do not commit real credentials, private
+keys, production logs, or unredacted sensitive data.
+
+## Contributing
+
+When adding or changing a skill:
+
+1. Keep the skill focused on one security workflow.
+2. Update the frontmatter `name` and `description`.
+3. Include clear triggers, examples, exclusions, and actionable steps.
+4. Reference real files and functions when reporting findings.
+5. Keep sensitive data out of examples and documentation.
+6. Run `node scripts/validate.mjs`.
+7. Run `git diff --check`.
+
+Canonical skill sources live under `skills/security/`. The `.agents/skills/`
+directory is for agent-specific installed or intentionally maintained skills.
+
+## Author
+
+Created and maintained by
+<a href="https://github.com/AmareDev2k">AmareDev2k</a>.
 
 ## License
 
-MIT
+MIT. See [`LICENSE`](./LICENSE).

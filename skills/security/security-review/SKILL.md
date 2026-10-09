@@ -1,11 +1,25 @@
 ---
 name: security-review
-description: Review a diff, branch, PR, or set of files for security vulnerabilities, checking injection, auth, data exposure, unsafe deserialization, SSRF, and misconfiguration. Use whenever the user asks for a security review, audit, or "is this safe", before merging code that touches auth, user input, file handling, or external requests, and as a final pass when implementing features.
+description: Review a diff, branch, pull request, or set of files for exploitable security vulnerabilities. Check injection, broken authentication or authorization, data exposure, unsafe deserialization, SSRF, file handling, secrets, and misconfiguration. Use when the user asks for a security review, audit, vulnerability check, exploitability assessment, "is this safe", or before merging code that changes authentication, user input, file handling, database queries, or external requests. Do not use for general code quality or performance reviews without a security concern.
 ---
 
 # Security Review
 
 Review code the way an attacker would read it, then report like an engineer.
+
+## Examples
+
+Use this skill for:
+
+- "Review this pull request for security issues."
+- "Can this endpoint be exploited through the `id` parameter?"
+- "Is this file upload implementation safe?"
+
+Do not use this skill for:
+
+- Formatting, style, or performance-only reviews.
+- A confirmed leaked credential; use `/secrets-hygiene` first.
+- An active compromise; use `/incident-response` first.
 
 ## Process
 

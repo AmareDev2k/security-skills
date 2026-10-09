@@ -24,6 +24,7 @@ Do not use this skill for:
 1. Identify the stack, then read the matching reference **before** reviewing config:
    - Django / Django REST Framework: `references/django.md`
    - Next.js, React, Supabase, Vercel: `references/nextjs-supabase.md`
+   - Express, Fastify, Node.js backends: `references/express-fastify.md`
    - Other stacks: apply the universal checklist below.
 2. Check each item. Verify against the real config files, not from memory of defaults.
 3. Report only failures and unverified items. Do not list things that pass.
